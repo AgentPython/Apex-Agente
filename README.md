@@ -17,8 +17,8 @@
   <a href="#about-the-project">About The Project</a> •
   <a href="#importing">Importing</a> •
   <a href="#installation">Installation</a> • 
-  <a href = "#dependencies-installation">Dependencies Installation</a> •
-  <a href="#run-locally">Run Locally</a>
+  <a href = "#run-locally">Run Locally</a> •
+  <a href="#run-on-microsoft-powerbi">Run on Microsoft PowerBI</a>
 </p>
 
 ## About The Project
@@ -91,7 +91,8 @@ python -m main
 >
 > You can change the all data inside main.py file
 
-## Run on Microsoft PowerBI (Windows only)
+## Run on Microsoft PowerBI
+You can only run Python on Microsoft PowerBI on Windows.
 
 ### Enable Python scripting
 To enable Python scripting in Power BI:
