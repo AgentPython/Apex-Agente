@@ -21,13 +21,13 @@ body = ""
 raw_url = data['product_agent_api_path'] + query
 url = data['base_url'] + raw_url
 
-def create_checksum():
+def create_checksum() -> str:
     string_to_hash = http_method.upper() + '|' + raw_url.lower() + '|' + default_headers + '|' + body
     hash_object = sha256(str.encode(string_to_hash))
     base64_string = b64encode(hash_object.digest()).decode('utf-8')
     return base64_string
 
-def create_jwt_token(iat=time(), algorithm='HS256', version='V1'):
+def create_jwt_token(iat=time(), algorithm='HS256', version='V1') -> str:
     checksum = create_checksum()
     payload = {
         "appid": data['application_id'],
@@ -38,13 +38,13 @@ def create_jwt_token(iat=time(), algorithm='HS256', version='V1'):
     token = jwt.encode(payload, data['api_key'], algorithm=algorithm)
     return token
 
-def fetch_data():
+def fetch_data() -> list[dict]:
     jwt_token = create_jwt_token()
     headers = {"Authorization": f"Bearer {jwt_token}"}
     res = requests.get(url, headers=headers, verify=False)
     return res.json()['result_content']
 
-def create_data():
+def create_data() -> dict[str, list]:
     data = fetch_data()
     data_list = {"Host Name": [], "Entity ID": [], "IP Address": [], "Last Registration Time": [], "Status": []}
     for d in data:
@@ -55,6 +55,7 @@ def create_data():
         data_list['Status'].append(d['connection_status'].upper())
 
     return data_list
+
 
 new_data = create_data()
 ApexAgente = pd.DataFrame(new_data)
