@@ -2,6 +2,9 @@ import jsonwebtoken as jwt
 import requests
 import pandas as pd
 
+# Remove the comment if you want to use matplotlib
+# import matplotlib.pyplot as plt
+
 from time import time
 from hashlib import sha256
 from base64 import b64encode
@@ -63,7 +66,12 @@ def create_data() -> dict[str, list]:
 
     return data_list
 
-
 new_data = create_data()
 ApexAgente = pd.DataFrame(new_data)
 print(ApexAgente)
+
+# Using matplotlib
+# fig, ax = plt.subplots()
+# ax.axis('off')
+# table = ax.table(cellText=ApexAgente.values, colLabels=ApexAgente.columns, loc="center")
+# plt.show()
